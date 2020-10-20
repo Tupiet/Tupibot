@@ -8,7 +8,7 @@ client.on("ready", () => {
   client.user.setPresence({
     status: "online",
     activity: {
-      name: "Discord",
+      name: "Jota777 es guapo",
       type: "PLAYING"
     }
   });
