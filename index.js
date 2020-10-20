@@ -9,7 +9,7 @@ client.on("ready", () => {
     status: "online",
     activity: {
       name: "Jota777 es guapo",
-      type: "COMPETING"
+      type: "PLAYING"
     }
   });
 });
