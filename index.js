@@ -3,8 +3,11 @@ const client = new Discord.Client();
 
 let prefix = "!";
 
+// Determina què farà el bot un cop funcioni sense errors.
 client.on("ready", () => {
+
   console.log("¡Conectado!");
+
   client.user.setPresence({
     status: "online",
     activity: {
@@ -12,21 +15,27 @@ client.on("ready", () => {
       type: "PLAYING"
     }
   });
+
 });
 
+// Cada cop que rebem un missatge:
 client.on("message", message => {
-  // Revisa si el missatge NO conté el prefix o si el mateix autor és un bot.
-  // Per tant, tot el que no tingui un prefix no funcionarà.  
-  
+
+  // Revisa si l'autor del missatge rebut és un bot.
+  // Si és així, fa un return i ignora tot el següent.
+
   if (message.author.bot) return;
   
+  // Agafem el command (el de després del prefix)
   const args = message.content.slice(prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
   
-  if (message.content.startsWith("ping")) {
-    let ping = Math.floor(message.client.ws.ping);
-    message.channel.send(":ping_pong: `" + ping + " ms.` desde glitch.");
-  } 
+  switch (message.content) {
+    case startsWith("ping"):
+      let ping = Math.floor(message.client.ws.ping);
+      message.channel.send(":ping_pong: `" + ping + " ms.` desde glitch.");
+      break;
+  }
   
   switch (command) {
     case "aleix":
