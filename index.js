@@ -4,8 +4,6 @@ const config = require("./config.json");
 
 let prefix = "!";
 
-var keyword;
-
 client.on("ready", () => {
   console.log("¡Conectado!");
   client.user.setPresence({
@@ -43,4 +41,4 @@ client.on("message", message => {
   }
 });
 
-client.login(config.token);
+client.login(process.env.TOKEN);
