@@ -6,7 +6,7 @@ let prefix = "!";
 client.on("ready", () => {
   console.log("¡Conectado!");
   client.user.setPresence({
-    status: "dnd",
+    status: "online",
     activity: {
       name: "Jota777 es guapo",
       type: "PLAYING"
