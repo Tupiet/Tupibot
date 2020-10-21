@@ -43,6 +43,9 @@ client.on("message", message => {
       message.channel.send("¡Pong!");
       break;
     case "purge":
+      if (args[0] == null) {
+        message.channel.send("olaaaa")
+      }
       message.channel.bulkDelete(args[0]);
       break;
     case "jacob": 
