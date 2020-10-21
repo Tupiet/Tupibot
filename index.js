@@ -9,9 +9,9 @@ client.on("ready", () => {
   console.log("¡Conectado!");
 
   client.user.setPresence({
-    status: "online",
+    status: "offline",
     activity: {
-      name: "Jota777 es guapo.",
+      name: "Jota777 es guapo",
       type: "PLAYING"
     }
   });
