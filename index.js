@@ -30,14 +30,9 @@ client.on("message", message => {
   const args = message.content.slice(prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
   
-  if (message.content.startsWith(msg)) {
-
-    switch (msg) {
-      case "ping":
-        let ping = Math.floor(message.client.ws.ping);
-        message.channel.send(":ping_pong: `" + ping + " ms.` desde glitch.");
-        break;
-    }
+  if (message.content.startsWith("ping")) {
+    let ping = Math.floor(message.client.ws.ping);
+    message.channel.send(":ping_pong: `" + ping + " ms.` desde glitch.");
   } 
   
   switch (command) {
