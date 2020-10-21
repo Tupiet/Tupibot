@@ -43,11 +43,13 @@ client.on("message", message => {
       message.channel.send("¡Pong!");
       break;
     case "purge":
-      if (args[0] == null) {
-        message.channel.send("olaaaa")
-      }
-      else if (message.member.hasPermission("MANAGE_MESSAGES")) {
-        message.channel.bulkDelete(args[0]);
+      if (message.member.hasPermission("MANAGE_MESSAGES")) {
+        if (args[0] == null) {
+          message.channel.send("¡Necesito saber cuántos mensajes quieres eliminar! Por ejemplo, así: `!purge`")
+        } else {
+          message.channel.bulkDelete(args[0]);
+        }
+        
       }
       
       break;
