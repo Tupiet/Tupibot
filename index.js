@@ -46,7 +46,10 @@ client.on("message", message => {
       if (args[0] == null) {
         message.channel.send("olaaaa")
       }
-      message.channel.bulkDelete(args[0]);
+      else if (message.member.hasPermission("MANAGE_MESSAGES")) {
+        message.channel.bulkDelete(args[0]);
+      }
+      
       break;
     case "jacob": 
       message.channel.send("Un gran amigo. ^^");
