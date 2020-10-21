@@ -36,7 +36,7 @@ client.on("message", message => {
   } 
   
   switch (command) {
-    case "aleix":
+    case "aleix" || "Aleix":
       message.channel.send("¡El mejor!");
       break;
     case "ping":
@@ -44,6 +44,9 @@ client.on("message", message => {
       break;
     case "purge":
       message.channel.bulkDelete(100);
+      break;
+    case "jacob": 
+    message.channel.send("Un gran amigo. ^^")
   }
 });
 
