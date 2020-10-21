@@ -45,17 +45,6 @@ client.on("message", message => {
     case "purge":
       message.channel.bulkDelete(100);
   }
-
-  switch (message.content) {
-    case startsWith("ping"):
-      let ping = Math.floor(message.client.ws.ping);
-      message.channel.send(":ping_pong: `" + ping + " ms.` desde glitch.");
-      break;
-    
-    case startsWith("aleix"):
-      message.channel.send("Aleeeix!");
-      break;
-  }
 });
 
 client.login(process.env.TOKEN);
