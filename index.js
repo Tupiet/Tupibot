@@ -49,7 +49,12 @@ client.on("message", message => {
       message.channel.send("Un gran amigo. ^^");
       break;
     case "tupi":
-      message.channel.send("¡La mejor tortuga! :turtle:")
+      if (message.member.hasPermision("MANAGE_MESSAGES")) {
+        message.channel.send("¡La mejor tortuga! :turtle:")
+      } else {
+        message.channel.send("No tienes permisos. :(")
+      }
+      
   }
 });
 
