@@ -43,18 +43,16 @@ client.on("message", message => {
       message.channel.send("¡Pong!");
       break;
     case "purge":
-      message.channel.bulkDelete(args[0]);
+      if (!args[0]) return message.channel.send("Por favor, introduce el número de mensajes a eliminar. ^^")
+      if (!message.member.hasPermision("MANAGE_MESSAGES")) return message.channel.send("No tienes permisos. :(")
+      else message.channel.bulkDelete(args[0]);
       break;
     case "jacob": 
       message.channel.send("Un gran amigo. ^^");
       break;
     case "tupi":
-      if (message.member.hasPermision("MANAGE_MESSAGES")) {
-        message.channel.send("¡La mejor tortuga! :turtle:")
-      } else {
-        message.channel.send("No tienes permisos. :(")
-      }
-      
+      message.channel.send("¡La mejor tortuga! :turtle:")
+      break;
   }
 });
 
