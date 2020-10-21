@@ -9,7 +9,7 @@ client.on("ready", () => {
   console.log("¡Conectado!");
 
   client.user.setPresence({
-    status: "offline",
+    status: "online",
     activity: {
       name: "Jota777 es guapo",
       type: "PLAYING"
@@ -46,7 +46,10 @@ client.on("message", message => {
       message.channel.bulkDelete(args[0]);
       break;
     case "jacob": 
-    message.channel.send("Un gran amigo. ^^")
+      message.channel.send("Un gran amigo. ^^");
+      break;
+    case "tupi":
+      message.channel.send("¡La mejor tortuga! :turtle:")
   }
 });
 
