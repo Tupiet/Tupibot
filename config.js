@@ -1,5 +1,5 @@
 let config = {
-    prefix: "!",
+    prefix: "!"
 }
 
 module.exports = config;
