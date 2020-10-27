@@ -1,65 +1,69 @@
-const Discord = require("discord.js");
+const Discord = require('discord.js');
 const client = new Discord.Client();
+// El modulo fs se utiliza para leer los archivos y carpetas de un directorio:
+let { readdirSync } = require('fs'); 
 
-let prefix = "!";
+// Referenciamos nuestro archivo de configuración, ahora en JS:
+client.config = require('./config.js'); 
 
-// Determina què farà el bot un cop funcioni sense errors.
-client.on("ready", () => {
+//Creamos una colección para Discordjs llamada 'comandos':
+client.comandos = new Discord.Collection();  
 
-  console.log("¡Conectado!");
+// <-- AQUI EL CONTROLADOR DE COMANDOS: -->
 
-  client.user.setPresence({
-    status: "online",
-    activity: {
-      name: "Jota777 es guapo",
-      type: "PLAYING"
-    }
-  });
-  
-});
+//dentro de nuestro for llamamos a la carpeta comandos creada:
+for(const file of readdirSync('./comandos/')) { 
 
-// Cada cop que rebem un missatge:
-client.on("message", message => {
+  //Esta condición evitara que los archivos que no son tengan la extención .js no sean listado:
+  if(file.endsWith(".js")) { 
 
-  // Revisa si l'autor del missatge rebut és un bot.
-  // Si és així, fa un return i ignora tot el següent.
+  //Elimina los últimos tres caracteres nombre del archivo para
+  //deshacerse de la extensión .js y solo quedarnos con el nombre del comando:
+  let fileName = file.substring(0, file.length - 3); 
 
-  if (message.author.bot) return;
-  
-  // Agafem el command (el de després del prefix)
-  const args = message.content.slice(prefix.length).trim().split(/ +/g);
-  const command = args.shift().toLowerCase();
-  
-  if (message.content.startsWith("ping")) {
-    let ping = Math.floor(message.client.ws.ping);
-    message.channel.send(":ping_pong: `" + ping + " ms.` desde glitch.");
-  } 
-  
-  switch (command) {
-    case "aleix":
-      message.channel.send("¡El mejor!");
-      break;
-    case "ping":
-      message.channel.send("¡Pong!");
-      break;
-    case "purge":
-      if (message.member.hasPermission("MANAGE_MESSAGES")) {
-        if (args[0] == null) {
-          message.channel.send("¡Necesito saber cuántos mensajes quieres eliminar! Por ejemplo, así: `!purge`")
-        } else {
-          message.channel.bulkDelete(args[0]);
-        }
-        
-      }
-      
-      break;
-    case "jacob": 
-      message.channel.send("Un gran amigo. ^^");
-      break;
-    case "tupi":
-      message.channel.send("¡La mejor tortuga! :turtle:")
-      break;
+  //Define una nueva varible 'fileContents' de la exportación del comando 
+  //dentro de la carpeta comandos:
+  let fileContents = require(`./comandos/${file}`); 
+
+  //Agrega el nombre del comando a la colección client.commands con un 
+  //valor de sus exportaciones respectivas.
+  client.comandos.set(fileName, fileContents);
   }
-});
+}
 
-client.login(process.env.TOKEN);
+// <-- AQUI EL CONTROLADOR DE EVENTOS: -->
+
+//dentro de nuestro for llamamos a la carpeta eventos creada:
+for(const file of readdirSync('./eventos/')) { 
+
+  //Esto condicion evitara que los archivos que no son archivos .js no coleccione:
+  if(file.endsWith(".js")){
+
+  //Elimina los últimos tres caracteres nombre del archivo para
+  //deshacerse de la extensión .js y solo quedarnos con el nombre del evento:
+  let fileName = file.substring(0, file.length - 3); 
+
+  //Define una nueva variable 'fileContents' de la exportación del evento dentro de la carpeta eventos:
+  let fileContents = require(`./eventos/${file}`); 
+  
+  // Cuando el evento se activa o es solicitada exportamos la función con 
+  // el nombre del evento vinculada y tambien el parametro client.
+  client.on(fileName, fileContents.bind(null, client)); 
+		
+  // Elimina la memoria caché del archivo requerido para facilitar la recarga y no 
+  // tener más memoria de la necesaria.
+  delete require.cache[require.resolve(`./eventos/${file}`)]; 
+  }
+}
+
+client.login(process.env.TOKEN) //agregamos las promesas de la propiedad login.
+  .then(() => { 
+    console.log(`Estoy listo, soy ${client.user.tag}`);
+
+  })
+  .catch((err) => {
+
+    //Si se produce un error al iniciar sesión, se le indicará en la consola.
+    console.error("Error al iniciar sesión: " + err);
+
+  });
