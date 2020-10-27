@@ -4,7 +4,7 @@ module.exports = (client) => {
     client.user.setPresence({
         status: "online",
         activity: {
-          name: "Jota777 es guapooo",
+          name: "Jota777 es guapo",
           type: "PLAYING"
         }
       });
