@@ -1,16 +1,13 @@
 //Esta función se activara cuando el evento haya iniciado:
 module.exports = (client) => {
   
-    client.user.setPresence( 
-      {
-        status: "online", 
-        game: { 
-          name: '!ping pong', 
-          url: null, // Establece el enlace del juego si el tipo es "STREAMING".
+    client.user.setPresence({
+        status: "online",
+        activity: {
+          name: "Jota777 es guapooo",
           type: "PLAYING"
         }
-      }
-    );
+      });
    
     
   }
