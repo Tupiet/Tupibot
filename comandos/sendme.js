@@ -1,7 +1,7 @@
 module.exports = (client, message, args) => { 
     const user = message.author;
     client.users.fetch(user.id).then((user) => {
-        user.send("My Message");
+        user.send("¿Esto funciona? :scared:");
     });
   
   }
