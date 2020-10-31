@@ -1,5 +1,8 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
+
+const sqlite3 = require('sqlite3').verbose();
+const db = new sqlite3.Database("./mybotdata.sqlite");
 // El modulo fs se utiliza para leer los archivos y carpetas de un directorio:
 let { readdirSync } = require('fs'); 
 
