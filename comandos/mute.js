@@ -1,11 +1,9 @@
 module.exports = (client, message, args) => { 
-    let persona = message.mentions.members.first() || // Usuario a quien se menciona (@Tupi)
-    message.guild.members.cache.filter((m) => m.user.username === args[0]) || // Apodo del usuario (Tupi)
-    message.member; // Usuario que ha enviado el mensaje
+    let persona = message.mentions.members.first() || message.guild.members.cache.filter(m => m.user.username == args[0]) || message.member;
 
-    let role = message.guild.roles.cache.find((r) => r.name == "Muerto"); // Busca un rol llamado "Muerto". 
+    let role = message.guild.roles.cache.find(r => r.name == "Muerto")[0].id;
 
-    persona.roles.add(role.id);
+    persona.roles.add(role);
 
     message.channel.send(`${persona} ha obtenido el rol muerto`);
   
