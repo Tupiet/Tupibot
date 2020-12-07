@@ -3,7 +3,8 @@ module.exports = (client, message, args) => {
     if (message.member.hasPermission("MANAGE_MESSAGES")) {
       let persona = message.mentions.members.first() || message.member;
 
-      persona.roles.add(role.id);
+      //persona.roles.add(role.id);
+      persona.voice.setMute(true);
 
       message.channel.send(`${persona} ha obtenido el rol muerto`);
     }
