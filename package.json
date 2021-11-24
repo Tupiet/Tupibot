@@ -1,29 +1,23 @@
 {
   "name": "tupibot",
-  "version": "1.1.0",
-  "description": "El mejor bot creado por una tortuga",
+  "version": "1.0.0",
+  "description": "",
   "main": "index.js",
-  "engines": {
-    "node": "12.x",
-    "npm": "*"
-  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Tupiet/Tupibot"
+    "url": "git+https://github.com/Tupiet/Tupibot.git"
   },
-  "keywords": [
-    "heroku",
-    "discord.js"
-  ],
-  "author": "Tupiet",
+  "author": "",
   "license": "MIT",
-  "homepage": "https://github.com/Tupiet",
+  "bugs": {
+    "url": "https://github.com/Tupiet/Tupibot/issues"
+  },
+  "homepage": "https://github.com/Tupiet/Tupibot#readme",
   "dependencies": {
-    "discord.js": "^12.0.3",
-    "sqlite3": "^5.0.0"
+    "discord.js": "^13.3.1"
   }
 }
